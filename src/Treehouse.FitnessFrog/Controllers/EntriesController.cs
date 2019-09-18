@@ -41,15 +41,19 @@ namespace Treehouse.FitnessFrog.Controllers
 
         public ActionResult Add()
         {
-            return View();
+            var entry = new Entry()
+            {
+                Date = DateTime.Today
+            };
+            return View(entry);
         }
         [HttpPost]
-        public ActionResult Add(DateTime? date, int? activityId, double? duration,
-            Entry.IntensityLevel? intensity, bool? exclude, string notes)
+        public ActionResult Add(Entry entry)
         {
-
+            //version 2 used htrml helper methods
             //this code can be removed because the html helper methods that used to renvder for filed and text inputs
             //internal use model state
+            //Part of Version 1 below
             //ViewBag.Date = ModelState["Date"].Value.AttemptedValue;
             //ViewBag.ActivityId = ModelState["ActivityId"].Value.AttemptedValue;
             //ViewBag.Duration = ModelState["Duration"].Value.AttemptedValue;
@@ -57,7 +61,15 @@ namespace Treehouse.FitnessFrog.Controllers
             //ViewBag.Exclude = ModelState["Exclude"].Value.AttemptedValue;
             //ViewBag.Notes = ModelState["Notes"].Value.AttemptedValue;
 
-            return View();
+            //version 3
+            if (ModelState.IsValid)
+            {
+                _entriesRepository.AddEntry(entry);
+
+                //need to add the entry list page
+            }
+
+            return View(entry);
         }
 
         public ActionResult Edit(int? id)
