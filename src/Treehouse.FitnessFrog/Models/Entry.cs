@@ -89,6 +89,10 @@ namespace Treehouse.FitnessFrog.Models
         /// <summary>
         /// The notes for the entry.
         /// </summary>
+        //note fields that cant be nul are automatically required fields. if it is a string it can be null and wont auto validate
+        //add a required block to the public method
+        //[Required]
+        //[MaxLength(200, ErrorMessage ="Too Long make 2 hunnies")]
         public string Notes { get; set; }
     }
 }
