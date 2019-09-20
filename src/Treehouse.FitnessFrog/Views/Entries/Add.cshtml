@@ -31,7 +31,7 @@
             <div class="form-group">
                 @*version 3 strongly typed methods - A lambda expression => is used in the first parameter*@
                 @Html.LabelFor(m => m.Date, new { @class = "control-label" })
-                @Html.TextBoxFor(m => m.Date, "{0:d}", new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Date, "{0:d}", new { @class = "form-control datepicker" })
 
                 @*Version 2 using HTML helper methods*@
                 @*@Html.Label("Date", new { @class = "control-label"})
