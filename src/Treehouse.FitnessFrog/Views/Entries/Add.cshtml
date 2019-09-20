@@ -1,78 +1,94 @@
-﻿@model Treehouse.FitnessFrog.Models.Entry 
+﻿@model Treehouse.FitnessFrog.Models.Entry
 @{
     ViewBag.Title = "Add Entry";
+    //Version 1 (This is what would create a basic Html drop down list lay out with 2 items) 
+    //var selectListItems = new[]
+    //{
+    //    new SelectListItem() { Value = "1", Text = "Item 1", Selected = false},
+    //    new SelectListItem() { Value = "2", Text = "Item 2", Selected = true}
+
+    //};
+    //Version 2 (this is an array of annonymous objects for select items in the drop down list.)
+    //    var items = new[]
+    //    {
+    //new { Id = 1, Name = "TacoBell"},
+    //new { Id = 2, Name = "Burger King"}
+
+    //};
+    //    var selectListItems = new SelectList(items, "Id", "Name");
 }
+
 
 <h2>@ViewBag.Title</h2>
 @using (Html.BeginForm())
 {
-        <div class="row">
+    <div class="row">
 
-            <div class="col-md-6">
+        <div class="col-md-6">
 
-                <div class="form-group">
-                    @*version 3 strongly typed methods - A lambda expression => is used in the first parameter*@
-                    @Html.LabelFor(m => m.Date, new { @class = "control-label" })
-                    @Html.TextBoxFor(m => m.Date, "{0:d}", new { @class = "form-control" })
+            <div class="form-group">
+                @*version 3 strongly typed methods - A lambda expression => is used in the first parameter*@
+                @Html.LabelFor(m => m.Date, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Date, "{0:d}", new { @class = "form-control" })
 
-                    @*Version 2 using HTML helper methods*@
-                    @*@Html.Label("Date", new { @class = "control-label"})
-        @Html.TextBox("Date", null, new { @class = "form-control"})*@
-                    @*old method below (Version 1)*@
-                    @*<label for="Date" class="control-label">Date</label>
-        <input type="text" id="Date" name="Date" class="form-control" value="@ViewBag.Date" />*@
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(m => m.ActivityId, new { @class = "control-label" })
-                    @Html.TextBoxFor(m => m.ActivityId, new { @class = "form-control" })
-
-                    @*old method below new method uptop*@
-                    @*<label for="ActivityId" class="control-label">Activity</label>
-        <input type="text" id="ActivityId" name="ActivityId" class="form-control" value="@ViewBag.ActivityId" />*@
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Duration, new { @class = "control-label" })
-                    @Html.TextBoxFor(m => m.Duration, new { @class = "form-control" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Intensity, new { @class = "control-label" })
-                    @Html.TextBoxFor(m => m.Intensity, new { @class = "form-control" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Exclude, new { @class = "control-label" })
-                    @Html.TextBoxFor(m => m.Exclude, new { @class = "form-control" })
-                </div>
-
+                @*Version 2 using HTML helper methods*@
+                @*@Html.Label("Date", new { @class = "control-label"})
+                    @Html.TextBox("Date", null, new { @class = "form-control"})*@
+                @*old method below (Version 1)*@
+                @*<label for="Date" class="control-label">Date</label>
+                    <input type="text" id="Date" name="Date" class="form-control" value="@ViewBag.Date" />*@
             </div>
 
-            <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(m => m.ActivityId, new { @class = "control-label" })
+                @Html.DropDownListFor(m => m.ActivityId, selectListItems, new { @class = "form-control" })
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Notes, new { @class = "control-label" })
-                    @Html.TextAreaFor(m => m.Notes, 14, 20, new { @class = "form-control" })
-
-                    @*<label for="Notes" class="control-label">Notes</label>
-        <textarea id="Notes" name="Notes" class="form-control" rows="14" cols="20">@ViewBag.Notes</textarea>*@
-                </div>
-
+                @*old method below new method uptop*@
+                @*<label for="ActivityId" class="control-label">Activity</label>
+                    <input type="text" id="ActivityId" name="ActivityId" class="form-control" value="@ViewBag.ActivityId" />*@
             </div>
 
-            <div class="col-md-12">
-                <div class="pad-top">
-                    <button type="submit" class="btn btn-success btn-lg margin-right">
-                        <span class="glyphicon glyphicon-save"></span> Save
-                    </button>
-                    <a href="@Url.Action("Index")" class="btn btn-warning btn-lg">
-                        <span class="glyphicon glyphicon-remove"></span> Cancel
-                    </a>
-                </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Duration, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Duration, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Intensity, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Intensity, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Exclude, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Exclude, new { @class = "form-control" })
             </div>
 
         </div>
 
-   
+        <div class="col-md-6">
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Notes, new { @class = "control-label" })
+                @Html.TextAreaFor(m => m.Notes, 14, 20, new { @class = "form-control" })
+
+                @*<label for="Notes" class="control-label">Notes</label>
+                    <textarea id="Notes" name="Notes" class="form-control" rows="14" cols="20">@ViewBag.Notes</textarea>*@
+            </div>
+
+        </div>
+
+        <div class="col-md-12">
+            <div class="pad-top">
+                <button type="submit" class="btn btn-success btn-lg margin-right">
+                    <span class="glyphicon glyphicon-save"></span> Save
+                </button>
+                <a href="@Url.Action("Index")" class="btn btn-warning btn-lg">
+                    <span class="glyphicon glyphicon-remove"></span> Cancel
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+
 }
