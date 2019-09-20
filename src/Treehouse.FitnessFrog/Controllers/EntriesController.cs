@@ -64,6 +64,11 @@ namespace Treehouse.FitnessFrog.Controllers
             //ViewBag.Notes = ModelState["Notes"].Value.AttemptedValue;
 
             //version 3
+
+            if (ModelState.IsValidField("Duration") && entry.Duration <= 0)
+            {
+                ModelState.AddModelError("Duration", "Duration is needed > 0");
+            }
             if (ModelState.IsValid)
             {
                 _entriesRepository.AddEntry(entry);
