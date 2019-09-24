@@ -22,6 +22,7 @@
 
 
 <h2>@ViewBag.Title</h2>
+@Html.ValidationSummary()
 @using (Html.BeginForm())
 {
     <div class="row">
@@ -45,7 +46,7 @@
                 @Html.LabelFor(m => m.ActivityId, new { @class = "control-label" })
                 @Html.DropDownListFor(m => m.ActivityId,
                (SelectList)ViewBag.ActivitiesSelectListItems, "Select  Thing", new { @class = "form-control" })
-
+                @Html.ValidationMessageFor(m => m.ActivityId)
                 @*old method below new method uptop*@
                 @*<label for="ActivityId" class="control-label">Activity</label>
                     <input type="text" id="ActivityId" name="ActivityId" class="form-control" value="@ViewBag.ActivityId" />*@
